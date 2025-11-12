@@ -1,0 +1,27 @@
+<!-- salvar como logo-icon.svg -->
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  <style>
+    .stroke { stroke:#ff7b29; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+  </style>
+
+  <!-- CHAMA (centralizada, sem tocar o pão; y máximas <= 40 para não invadir) -->
+  <path class="stroke" d="M60 18
+                          C70 30, 66 34, 64 38
+                          C62 32, 60 28, 60 24
+                          C60 28, 58 32, 56 38
+                          C54 34, 50 30, 60 18 Z"/>
+
+  <!-- PÃO SUPERIOR -->
+  <path class="stroke" d="M30 70 C30 58 44 48 60 48 C76 48 90 58 90 70 H30 Z"/>
+
+  <!-- GERGELIM -->
+  <circle cx="50" cy="57" r="2.4" fill="#ff7b29"/>
+  <circle cx="60" cy="55" r="2.4" fill="#ff7b29"/>
+  <circle cx="70" cy="57" r="2.4" fill="#ff7b29"/>
+
+  <!-- CARNE (linha) -->
+  <line class="stroke" x1="38" y1="80" x2="82" y2="80"/>
+
+  <!-- PÃO INFERIOR -->
+  <path class="stroke" d="M30 90 C30 102 44 110 60 110 C76 110 90 102 90 90 H30 Z"/>
+</svg>
