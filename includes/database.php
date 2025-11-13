@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/../config/config.php';
 
 class Database {
     private static $instance = null;
@@ -27,7 +27,6 @@ class Database {
     }
 
     private function init() {
-        // Tabela de usuários
         $sqlUsers = "CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
@@ -37,18 +36,36 @@ class Database {
         );";
         $this->pdo->exec($sqlUsers);
 
-        // Tabela de produtos / menu
         $sqlMenu = "CREATE TABLE IF NOT EXISTS menu_items (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
             descricao TEXT,
             preco REAL NOT NULL,
+            quantidade INTEGER DEFAULT 0,
             disponibilidade INTEGER NOT NULL DEFAULT 1,
+            imagem TEXT, 
             criado_em TEXT DEFAULT CURRENT_TIMESTAMP
         );";
         $this->pdo->exec($sqlMenu);
 
+        $this->checkAndAddImagemColumn();
+
         $this->createDefaultAdmin();
+    }
+
+    private function checkAndAddImagemColumn() {
+        $stmt = $this->pdo->query("PRAGMA table_info(menu_items)");
+        $columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $colNames = array_column($columns, 'name');
+
+        if (!in_array('imagem', $colNames)) {
+            $this->pdo->exec("ALTER TABLE menu_items ADD COLUMN imagem TEXT");
+        }
+
+        if (!in_array('quantidade', $colNames)) {
+            $this->pdo->exec("ALTER TABLE menu_items ADD COLUMN quantidade INTEGER DEFAULT 0");
+        }
     }
 
     private function createDefaultAdmin() {

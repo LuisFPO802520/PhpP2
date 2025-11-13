@@ -1,8 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../includes/database.php';
 require_once __DIR__ . '/../../../includes/auth.php';
 
-$pdo = Database::getInstance()->getConnection();
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,43 +10,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email === '' || $senha === '') {
         $errors[] = "Preencha todos os campos.";
     } else {
-        $stmt = $pdo->prepare("SELECT id, nome, email, senha, role FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($senha, $user['senha'])) {
-            // Usa o novo sistema de sessão do auth.php
-            login($user['email'], $user['role']);
-            $_SESSION['user']['id'] = $user['id'];
-            $_SESSION['user']['nome'] = $user['nome'];
-            header('Location: /public/index.php');
+        if (login($email, $senha)) {
+            header('Location: /index.php');
             exit;
         } else {
-            $errors[] = "Email ou senha incorretos.";
+            $errors[] = "E-mail ou senha inválidos.";
         }
     }
 }
 ?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <title>Login - Big Bar's</title>
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-<h2>Login - Big Bar's</h2>
 
-<?php if (!empty($errors)): ?>
-    <?php foreach ($errors as $e): ?>
-        <div style="color:red"><?= htmlspecialchars($e) ?></div>
-    <?php endforeach; ?>
-<?php endif; ?>
+<div class="login-container">
+    
+    <h1>Login - Big Bar's</h1>
 
-<form method="post">
-    <label>Email: <input type="email" name="email" value="<?= htmlspecialchars($email ?? '') ?>"></label><br>
-    <label>Senha: <input type="password" name="senha"></label><br>
-    <button type="submit">Entrar</button>
-</form>
-<p><a href="/public/pages/account/register.php">Criar conta</a></p>
+    <?php include __DIR__ . '/../../../includes/messages.php'; ?>
+
+    <?php if (!empty($errors)): ?>
+        <div class="error-box">
+            <?php foreach ($errors as $e): ?>
+                <p><?= htmlspecialchars($e) ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+
+    <form method="post">
+
+        <input type="email" name="email" placeholder="Seu e-mail" required>
+
+        <input type="password" name="senha" placeholder="Sua senha" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p>
+        Ainda não tem conta?  
+        <a href="/pages/account/register.php">Criar conta</a>
+    </p>
+
+</div>
+
 </body>
 </html>

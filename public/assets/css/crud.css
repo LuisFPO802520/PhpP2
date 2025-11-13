@@ -1,0 +1,374 @@
+/* ======================================== */
+/*          PAINEL ADMIN - CRUD             */
+/* ======================================== */
+
+/* Layout geral do painel */
+.organizar-produtos {
+  margin-top: -30px;
+  width: 260px;
+  min-height: calc(100vh - 80px);
+  padding: 24px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid var(--border);
+  box-shadow: 0 0 22px rgba(255, 143, 0, 0.12);
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Título lateral */
+.organizar-produtos .text-menu {
+  color: var(--orange);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* Links do menu */
+.organizar-produtos a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: 0.25s;
+}
+
+.organizar-produtos a:hover {
+  background: rgba(255, 143, 0, 0.12);
+  color: var(--orange);
+}
+
+/* Separadores */
+.organizar-produtos hr {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  margin: 8px 0;
+}
+
+/* ======================================== */
+/*        LISTAGEM DE PRODUTOS (ADMIN)      */
+/* ======================================== */
+
+.botoes-crud {
+  margin: 20px 0;
+  margin-bottom: -20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.botoes-crud a {
+  background: rgba(255, 143, 0, 0.1);
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--orange);
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.botoes-crud a:hover {
+  background: var(--orange);
+  color: #000;
+}
+
+/* ======================================== */
+/*         FORMULÁRIOS CRUD (CRIAR/EDITAR)  */
+/* ======================================== */
+
+.criar-produto-container {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 22px rgba(255, 143, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; 
+}
+
+.form-criar-produto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-criar-produto {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.input-criar-produto:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 14px rgba(255, 143, 0, 0.5);
+}
+
+/* Botão de ações CRUD */
+.btn-criar-produto {
+  padding: 12px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  border: none;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 18px rgba(255, 143, 0, 0.5);
+}
+
+.btn-criar-produto:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 0 28px rgba(255, 143, 0, 0.8);
+}
+
+/* Preview */
+.preview-imagem {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  margin-top: 10px;
+}
+
+/* ============================ */
+/*   LAYOUT DO DASHBOARD ADMIN  */
+/* ============================ */
+
+.dashboard-layout {
+  display: flex;
+  margin-top: 90px;
+  min-height: calc(100vh - 90px);
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;     
+}
+
+.titulo-crud {
+  margin-top: -100px;
+  display: flex;
+  justify-content: center;
+}
+
+.text-menu {
+  margin-left: 11px;
+}
+
+/* ======================================== */
+/*       LISTA DE PRODUTOS (Home)           */
+/* ======================================== */
+
+.produtos {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 30px 50px; /* espaço por causa da navbar */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 26px;
+  justify-content: center;
+}
+
+/* ======================================== */
+/*             CARD DO PRODUTO              */
+/* ======================================== */
+
+.produto {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(255, 143, 0, 0.06);
+  transition: transform .25s ease, box-shadow .25s ease, border .25s ease;
+}
+
+.produto:hover {
+  transform: translateY(-6px);
+  border-color: var(--orange);
+  box-shadow: 0 0 22px rgba(255, 143, 0, 0.28);
+}
+
+/* imagem */
+.produto img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 12px;
+}
+
+/* nome */
+.produto h3 {
+  margin: 6px 0 8px;
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* preço */
+.produto p:first-of-type {
+  margin: 4px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* informações secundárias */
+.produto p {
+  margin: 3px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ======================================== */
+/*             BOTÃO COMPRAR                */
+/* ======================================== */
+
+.produto button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 999px; /* pill */
+  border: none;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 0 14px rgba(255, 143, 0, 0.35);
+}
+
+.produto button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 22px rgba(255, 143, 0, 0.55);
+}
+
+.produto button:active {
+  transform: translateY(-1px);
+}
+  
+/* ======================================== */
+/*    PÁGINA DE EXCLUSÃO DE PRODUTO (ADMIN) */
+/* ======================================== */
+
+/* Espaçamento e separação visual da seção de preview */
+.preview-bloco {
+  margin-top: 30px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Preview de produto */
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text);
+}
+
+.preview-container p {
+  margin: 2px 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.preview-container strong {
+  color: var(--orange);
+}
+
+/* Imagem do preview */
+.preview-container .preview-imagem {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-top: 10px;
+  box-shadow: 0 0 14px rgba(255, 143, 0, 0.15);
+}
+
+/* Botão de buscar produto (laranja) */
+.btn-buscar-produto {
+  background: linear-gradient(90deg, #ffaf00, #ff8f00);
+  box-shadow: 0 0 18px rgba(255, 143, 0, 0.45);
+}
+
+/* Botão de remover produto (vermelho) */
+.btn-remover-produto {
+  background: linear-gradient(90deg, #ff4646, #d32f2f);
+  box-shadow: 0 0 18px rgba(255, 70, 70, 0.45);
+  margin-top: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-remover-produto:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 28px rgba(255, 70, 70, 0.6);
+}
+
+/* ====== Classes substituindo estilos inline ====== */
+
+/* Mensagens de erro */
+.erro-criar-prod {
+  color: red;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Preview inicialmente oculto */
+.ocultar-preview {
+  display: none;
+}
+
+/* Checkbox alinhado */
+.checkbox-disponibilidade {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* ====================== */
+/*  Ajustes Editar Produto */
+/* ====================== */
+
+/* Mensagem de erro (antes inline) */
+.erro-criar-prod {
+  color: red;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Preview inicialmente oculto */
+.ocultar-preview {
+  display: none !important;
+}
+
+/* Checkbox com alinhamento bonito */
+.checkbox-disponibilidade {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-top: 6px;
+}

@@ -1,0 +1,238 @@
+/* ======================================= */
+/*           CHECKOUT (PAGAMENTO)          */
+/* ======================================= */
+
+.pagamento-wrap {
+  max-width: 1000px;
+  margin: 120px auto;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.65);
+}
+
+.pagamento-wrap h2 {
+  margin-bottom: 20px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* GRID DO CHECKOUT */
+.pagamento-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .pagamento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FORM */
+.form-pagamento {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-pagamento label {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-pagamento input {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.form-pagamento input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 12px rgba(255,120,0,0.6);
+  outline: none;
+}
+
+/* MÉTODOS DE PAGAMENTO */
+.metodos {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0 10px;
+}
+
+.metodo {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.metodo.selected,
+.metodo:hover {
+  background: var(--orange);
+  color: #111;
+}
+
+/* RESUMO */
+.resumo-pedido {
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 110px;
+  height: fit-content;
+}
+
+.resumo-pedido .linha {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.resumo-pedido .total {
+  margin-top: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* BOTÃO PAGAR */
+.pagar-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  color: #fff;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 18px;
+  box-shadow: 0 0 22px rgba(255,120,0,0.6);
+  transition: 0.3s;
+}
+
+.pagar-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 32px rgba(255,120,0,0.9);
+}
+
+/* ANIMAÇÃO */
+.fade-in { animation: fadeIn 0.5s ease; }
+.fade-slide-up { animation: slideUp 0.6s cubic-bezier(.23,1,.32,1); }
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CUPOM */
+.cupom-btn {
+  background: var(--orange);
+  color: #111;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+/* DESCONTO NO RESUMO */
+.resumo-pedido .desconto span:last-child {
+  color: #79ff92;
+}
+
+/* POPUP CHECKOUT FINALIZADO */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px); /* deixa o fundo desfocado */
+  background: rgba(0,0,0,0.78); /* escurece fundo de verdade */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+  z-index: 9999; /* garante que fica acima de tudo */
+}
+
+.popup {
+  background: rgba(25,25,25,0.92); /* caixa mais sólida */
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: 34px 48px;
+  border-radius: 14px;
+  text-align: center;
+  color: #fff;
+  animation: slideUp 0.45s ease;
+  box-shadow: 0 0 40px rgba(255,120,0,0.5); /* glow suave neon */
+}
+
+.popup h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.popup p {
+  font-size: 16px;
+  color: #ffddb3; /* tom quente suave */
+}
+
+/* BOTÃO OK DO POPUP */
+.popup-ok-btn {
+  margin-top: 18px;
+  padding: 12px 26px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  border-radius: 999px;
+  font-weight: 800;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 22px rgba(255,120,0,0.65);
+}
+
+.popup-ok-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 34px rgba(255,120,0,1);
+}
+
+.btn-voltar {
+  width: 100px;
+  height: auto;
+  padding: 5px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 18px;
+  margin-left: 55px;
+  box-shadow: 0 0 22px rgba(255,120,0,0.6);
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 32px rgba(255,120,0,0.9);
+}
+
+.btn-voltar a {
+  display: inline-block;
+  text-decoration: none;     /* remove sublinhado */
+  color: white;              /* deixa o texto branco */
+}

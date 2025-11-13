@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hash = password_hash($senha, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (nome, email, senha, role) VALUES (?, ?, ?, 'user')");
             $stmt->execute([$nome, $email, $hash]);
-            header('Location: /public/pages/account/login.php?registered=1');
+            header('Location: /pages/account/login.php?registered=1');
             exit;
         }
     }
@@ -39,25 +39,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Cadastro - Big Bar's</title>
+
+    <!-- ATIVANDO O CSS DO LOGIN -->
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
+
 <body>
-<h2>Cadastro - Big Bar's</h2>
 
-<?php if (!empty($errors)): ?>
-    <div style="color:red">
-        <?php foreach ($errors as $e): ?>
-            <p><?= htmlspecialchars($e) ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+<div class="login-container">
 
-<form method="post">
-    <label>Nome: <input type="text" name="nome" value="<?= htmlspecialchars($nome ?? '') ?>"></label><br>
-    <label>Email: <input type="email" name="email" value="<?= htmlspecialchars($email ?? '') ?>"></label><br>
-    <label>Senha: <input type="password" name="senha"></label><br>
-    <label>Confirmar senha: <input type="password" name="senha_confirm"></label><br>
-    <button type="submit">Cadastrar</button>
-</form>
-<p><a href="/public/pages/account/login.php">Já tenho conta — Entrar</a></p>
+    <h1> Criar Conta </h1>
+
+    <?php if (!empty($errors)): ?>
+        <div class="error-box">
+            <?php foreach ($errors as $e): ?>
+                <p><?= htmlspecialchars($e) ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <form method="post">
+
+        <input type="text" name="nome"
+               placeholder="Seu nome"
+               value="<?= htmlspecialchars($nome ?? '') ?>">
+
+        <input type="email" name="email"
+               placeholder="Seu e-mail"
+               value="<?= htmlspecialchars($email ?? '') ?>">
+
+        <input type="password" name="senha" placeholder="Senha">
+
+        <input type="password" name="senha_confirm" placeholder="Confirmar senha">
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p>
+        Já tem conta?
+        <a href="/pages/account/login.php">Entrar</a>
+    </p>
+</div>
+
 </body>
 </html>
